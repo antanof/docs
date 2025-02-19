@@ -69,6 +69,12 @@ The `ports` directive is not included in this configuration, as it is not necess
 
 The above configuration sets up a Redis container named `redis-valkey` and mounts a volume for data persistence. The `healthcheck` directive ensures that the container is restarted if it fails to respond to the `ping` command. The `--save 30 1` command option saves the Redis database to disk every 30 minutes if at least 1 key has changed.
 
+For a better integration with RHEL based OS, you can set :
+```
+    logging:
+      driver: "journald"
+```
+This driver accept tags in options : `tag=valkey` and you can easily retrieve these logs with `journalctl -t valkey -f`
 :::
 
 To create a Docker network for communication between Open WebUI and Redis, run the following command:
